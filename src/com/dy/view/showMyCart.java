@@ -31,13 +31,16 @@ public class showMyCart extends HttpServlet {
         int total=0;
         while(iterator.hasNext()){
             String key= (String) iterator.next();
-            Book book=mybooks.get(key);
+            Book book=mybooks.get(key)     ;
             total +=book.getNum()*book.getPrice();
             out.println(book.getName()+" "+book.getNum()+"<br/>");
 
         }
         out.println("您购买的商品总价格为："+total+"<br/>");
-        out.println("<a href='/myCart/showBook'>返回购买页面</a>");
+
+        //URL地址重写
+        String url=response.encodeURL("/myCart/showBook");
+        out.println("<a href='"+url+"'>返回购买页面</a>");
 
     }
 }

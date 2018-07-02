@@ -16,6 +16,8 @@ public class showBook extends javax.servlet.http.HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         ArrayList<Book> mydb= DB.getDB();
+        //访问以下session
+        request.getSession();
         out.println("<style type=\"text/css\">\n" +
                 "\ttable{\n" +
                 "\t\tborder-collapse: collapse;\n" +
@@ -37,13 +39,15 @@ public class showBook extends javax.servlet.http.HttpServlet {
                 "\t\t\t</tr>\n" );
         for(Book book:mydb){
 
+            String url= response.encodeURL("/myCart/BuyBookCl?id="+book.getId());
+            //URL重定向
 
         out.println(
                 "\t\t\t<tr>\n" +
                 "\t\t\t\t<td>"+book.getName()+"</td>\n" +
                 "\t\t\t\t<td>"+book.getPrice()+"</td>\n" +
                 "\t\t\t\t<td>8</td>\n" +
-                "\t\t\t\t<td><a href='/myCart/BuyBookCl?id="+book.getId()+"'>购买此书</a></td>\n" +
+                "\t\t\t\t<td><a href='"+url+"'>购买此书</a></td>\n" +
                 "\t\t\t</tr>\n");
     }
     }
